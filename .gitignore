@@ -1,0 +1,8 @@
+# Ortam ve Şifreler
+venv/
+.env
+
+# Python Ön Bellek Dosyaları
+__pycache__/
+*.pyc
+
