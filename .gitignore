@@ -1,8 +1,7 @@
-# Ortam ve Şifreler
 venv/
+.venv/
 .env
-
-# Python Ön Bellek Dosyaları
 __pycache__/
-*.pyc
-
+*.py[cod]
+.DS_Store
+Thumbs.db

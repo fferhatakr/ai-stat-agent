@@ -1,77 +1,39 @@
-# 🎓 AI Stat Agent - Akademik Araştırma Asistanı
+# 📊 AI-Stat-Agent v2.0
 
-Bu proje, klinik veri setlerini (özellikle inme/stroke verileri) otomatik olarak analiz edip, elde edilen istatistiksel özetleri yapay zeka yardımıyla akademik bir yayın stratejisine dönüştüren bir asistan uygulamasıdır. 
+Bu proje, ham Excel verilerini otonom bir şekilde analiz edebilen, veri manipülasyonu yapabilen ve kullanıcıyla mesleki bağlamda (Doktor, Yazılımcı, Polis vb.) iletişim kurabilen **Ajan tabanlı bir Yapay Zeka** asistanıdır.
 
-Sistem, verileri okuyup oranları (yaş ortalaması, BMI, inme oranı vb.) hesaplar ve **Groq API** üzerinden çalışan Llama 3 modeline göndererek Q1 seviyesinde bir dergi editörü/mentorü gözüyle detaylı, patofizyolojik ve otoriter bir klinik rapor sunar.
+v1.0 sürümündeki statik API çağrısı yapısı, v2.0 ile yerini **Agentic Workflow (Ajan İş Akışı)** mimarisine bırakmıştır.
 
-## 🚀 Özellikler
 
-- **Otomatik Veri Analizi:** Excel (`.xlsx`) formatındaki klinik verileri okur ve eksik verileri tolere ederek inme grubuna ait istatistikleri (ortalama, yüzde dağılımı vb.) çıkarır.
-- **Yapay Zeka Destekli Raporlama:** Hastalık risk faktörlerini hücresel ve klinik düzeyde yorumlayan, makale hipotezi kuran ve hasta simülasyonları oluşturan gelişmiş bir prompt mühendisliği içerir.
-- **Çift Kullanım Seçeneği:** Proje hem terminal üzerinden (`main.py`) tek tıkla çalıştırılabilir hem de **Streamlit** kullanılarak hazırlanan web arayüzü (`app.py`) üzerinden görsel olarak kullanılabilir.
+## 🌟 v2.0 ile Gelen Majör Yenilikler
 
-## 📁 Proje Yapısı
+* **Otonom Akıl Yürütme (Reasoning):** Ajan artık sadece metin üretmiyor; soruları yanıtlamak için arka planda Python (Pandas) kodları yazar, çalıştırır ve kesin sonuçları kullanıcıya sunar.
+* **Dinamik Persona (Bukalemun Modu):** Kullanıcının uzmanlık alanına göre (Sağlık, Hukuk, Teknik) terminolojisini ve analiz derinliğini otomatik olarak optimize eder.
+* **Veri Geliştirme (Feature Engineering) Önerileri:** Veri kalitesini artırmak için eksik veri yönetimi ve yeni özellik oluşturma stratejileri sunar.
+* **Hata Toleranslı Çıktı Yönetimi:** "Output Parsing" hatalarını kendi kendine tespit edip düzelten bir yapıya sahiptir.
 
-```text
-AI_STAT_AGENT/
-├── agent/
-│   └── stat_agent.py       # Yapay zeka promptunun ve Groq API çağrısının yapıldığı dosya
-├── analysis/
-│   └── statistics.py       # Gelecekteki gelişmiş veri analiz fonksiyonları için ayrılmış modül
-├── app.py                  # Streamlit web arayüzü dosyası
-├── main.py                 # Terminal üzerinden hızlı test için ana çalıştırma dosyası
-├── healthcare-dataset-stroke-data.xlsx  # Test için kullanılan örnek klinik veri seti
-└── requirements.txt        # Projenin çalışması için gereken Python kütüphaneleri
-```
+## 🛠️ Teknoloji Yığını (Tech Stack)
 
-# 🛠️ Kurulum Adımları
+* **LLM Orchestration:** LangChain
+* **Model:** Llama-3.1-8b-instant (via Groq Cloud)
+* **Veri İşleme:** Pandas, Openpyxl
+* **Dil:** Python 3.x
+* **Ortam Yönetimi:** Dotenv, Virtualenv
 
-Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyin:
+## 🚀 Kurulum ve Kullanım
+
+1.  **Bağımlılıkları Yükleyin:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+2.  **Yapılandırma:** `.env` dosyanıza `GROQ_API_KEY` bilginizi ekleyin.
+3.  **Başlatma:**
+    ```bash
+    python main.py
+    ```
 
 ---
 
-## 1. Repoyu Bilgisayarınıza İndirin (Clone)
-```bash
-git clone https://github.com/KULLANICI_ADIN/ai-stat-agent.git
-cd ai-stat-agent
-```
+## 👨‍💻 Geliştirici Notu
+Bu proje, bir Bilgisayar Mühendisliği öğrencisinin **LLM'leri otonom araçlarla (Tool Calling) birleştirme** ve gerçek dünya verileri (Sağlık/İnme verisi) üzerinde anlamlı içgörüler üretme yolculuğudur. Proje, statik modellerin ötesine geçerek 'karar verebilen' sistemler inşa etme vizyonuyla geliştirilmiştir.
 
-## 2. Sanal Ortam (Virtual Environment) Oluşturun ve Aktif Edin
-
-**Windows için:**
-```bash
-python -m venv venv
-.\venv\Scripts\activate
-```
-
-**macOS/Linux için:**
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-## 3. Gerekli Kütüphaneleri Kurun
-```bash
-pip install -r requirements.txt
-```
-
-**(Not: Eğer requirements.txt dosyanız yoksa manuel olarak pip install pandas openpyxl groq streamlit komutunu çalıştırabilirsiniz.)**
-
-## 4. API Anahtarı (Önemli) 
-**Sistemin yapay zeka cevapları üretebilmesi için bir Groq API anahtarına ihtiyacı vardır. Geliştirme aşamasında API key kod içerisinde tanımlanmıştır ancak güvenliğiniz için Groq Console üzerinden kendi anahtarınızı alıp kod içerisindeki (app.py ve stat_agent.py) API_KEY değişkenine entegre etmeniz önerilir.**
-
-
-## 💻 Kullanım
-
-Projeyi iki farklı şekilde çalıştırabilirsiniz:
-
-**Seçenek 1: Terminal Üzerinden Hızlı Analiz Sadece konsol çıktısı görmek istiyorsanız:**
-```bash
-python main.py
-```
-**Seçenek 2: Görsel Web Arayüzü (Streamlit) Grafiksel arayüzü başlatmak ve tarayıcı üzerinden Excel yükleyerek raporu indirmek için:**
-```bash
-streamlit run app.py
-```
-👥 Geliştiriciler
-Ferhat
