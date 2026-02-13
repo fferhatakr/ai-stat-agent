@@ -1,4 +1,4 @@
-# 📊 AI-Stat-Agent v2.1
+# 📊 AI-Stat-Agent v3.0
 
 Bu proje, Excel tabanlı veri setlerini analiz edebilen, analiz sonuçlarını yorumlayabilen ve kullanıcıyla mesleki bağlama (Doktor, Yazılımcı, Hukukçu vb.) göre iletişim kurabilen ajan tabanlı hibrit bir **Yapay Zeka** asistanıdır.
 
