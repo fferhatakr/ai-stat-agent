@@ -1,13 +1,13 @@
 from src.config import get_llm
-from src.tools import get_excel_agent
+from src.tools import load_data
+from src.agent_core import run_agent
 
-# Bu fonksiyon, diğer dosyalardaki parçaları bir araya getiriyor
 def build_agent(excel_file_path):
-    
+
     llm = get_llm()
-    agent = get_excel_agent(llm, excel_file_path)
-    
-    
-    if agent is None:
-        raise Exception("Hata: Ajan kurulamadı. Lütfen Veri dosyasının yolunu kontrol edin.")
-    return agent
+    df = load_data(excel_file_path)
+
+    def agent_interface(user_input,role):
+        return run_agent(llm, df, user_input,role)
+
+    return agent_interface
